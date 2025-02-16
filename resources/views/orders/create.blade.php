@@ -20,7 +20,7 @@
                         <div>Giá: {{ number_format($product->price, 0, ',', '.') }} VNĐ</div>
                         <div>
                             <label for="quantity_{{ $product->id }}" class="block mt-2">Số lượng</label>
-                            <input type="number" name="quantity[]" id="quantity_{{ $product->id }}" class="border px-2 py-1 w-full" value="{{ old('quantity.' . $product->id) }}" min="1" required>
+                            <input type="number" name="quantity[]" id="quantity_{{ $product->id }}" class="border px-2 py-1 w-full" value="{{ old('quantity.' . $product->id) }}" min="0">
                         </div>
                         <input type="hidden" name="product_id[]" value="{{ $product->id }}">
                     </div>

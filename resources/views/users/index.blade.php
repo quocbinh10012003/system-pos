@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="text-3xl font-bold text-gray-700 mb-6">Danh sách khách hàng</h1>
+    <h1 class="text-3xl font-bold text-gray-700 mb-6">Danh sách nhân viên</h1>
     
     <a href="{{ route('users.create') }}" class="bg-blue-500 text-white px-6 py-2 rounded shadow hover:bg-blue-600">
-        + Thêm khách hàng
+        + Thêm nhân viên
     </a>
 
     <table class="w-full mt-6 border border-gray-300 shadow-sm">

@@ -5,20 +5,38 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('items')->get(); // Lấy đơn hàng cùng với các mục trong đơn hàng
+        // Lấy tất cả đơn hàng cùng với sản phẩm của chúng
+        $orders = Order::with('items')->get();
+        // Lọc và xóa những đơn hàng không có sản phẩm
+        foreach ($orders as $order) {
+            if ($order->items->isEmpty()) {
+                $order->delete();
+            }
+        }
+        // Lấy lại danh sách đơn hàng sau khi đã xóa các đơn hàng trống
+        $orders = Order::with('items')->get();
         return view('orders.index', compact('orders'));
     }
+
 
     public function create()
     {
         // Lấy danh sách sản phẩm để hiển thị trong form
         $products = Product::all();
         return view('orders.create', compact('products'));
+
+        // $userId = Auth::id(); 
+        // // Tạo đơn hàng
+        // $order = Order::create([
+        //     'user_id' => $userId, // Tạm thời gán user_id là 1
+        //     'customer_name' => $request->customer_name,
+        //     'total' => 0, // Tổng tiền sẽ được tính sau
+        // ]);
     }
 
     public function store(Request $request)
@@ -29,12 +47,12 @@ class OrderController extends Controller
             'product_id' => 'required|array',
             'product_id.*' => 'exists:products,id',
             'quantity' => 'required|array',
-            'quantity.*' => 'integer|min:1',
+            'quantity.*' => 'nullable|integer|min:0',
         ]);
-
+        $userId = Auth::id(); 
         // Tạo đơn hàng
         $order = Order::create([
-            'user_id' => 1, // Tạm thời gán user_id là 1
+            'user_id' => $userId, // Tạm thời gán user_id là 1
             'customer_name' => $request->customer_name,
             'total' => 0, // Tổng tiền sẽ được tính sau
         ]);
@@ -43,12 +61,17 @@ class OrderController extends Controller
         $total = 0;
         foreach ($request->product_id as $index => $productId) {
             $product = Product::find($productId);
-            $quantity = $request->quantity[$index];
+            // $quantity = $request->quantity[$index];
+            $quantity = isset($request->quantity[$index]) ? (int) $request->quantity[$index] : 0;
 
+            if ($quantity == 0) {
+                continue;
+            }
             $orderItem = new OrderItem([
                 'product_id' => $product->id,
                 'product_name' => $product->name,
                 'quantity' => $quantity,
+                
                 'price' => $product->price,
                 'total' => $product->price * $quantity,
             ]);
@@ -65,6 +88,8 @@ class OrderController extends Controller
 
         return redirect()->route('orders.index')->with('success', 'Đơn hàng đã được tạo!');
     }
+
+
 
 
     public function edit($id)

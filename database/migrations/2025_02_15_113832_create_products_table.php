@@ -17,9 +17,19 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('price', 10, 2);
+            $table->string('image_url')->nullable();
             $table->integer('stock');
             $table->timestamps();
         });
+
+
+        // Schema::create('orders', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Liên kết với user
+        //     $table->string('customer_name');
+        //     $table->decimal('total', 10, 2); // Tổng tiền của đơn hàng
+        //     $table->timestamps();
+        // });
     }
 
     /**

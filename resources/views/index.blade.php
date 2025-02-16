@@ -23,7 +23,7 @@
             <!-- ✅ Khách hàng -->
             <a href="/users" class="group bg-purple-500 text-white px-6 py-4 rounded-lg shadow-md transition transform hover:scale-105 flex flex-col items-center">
                 👥
-                <span class="mt-2 text-lg font-semibold">Quản lý khách hàng</span>
+                <span class="mt-2 text-lg font-semibold">Quản lý nhân viên</span>
             </a>
         </div>
     </div>

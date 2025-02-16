@@ -6,11 +6,13 @@
     <h1 class="text-2xl font-bold">Danh sách sản phẩm</h1>
     <br>
     <a href="{{ route('products.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Thêm Sản Phẩm</a>
+    {{-- <a href="{{ route('/') }}" class="bg-green-500 text-white px-4 py-2 rounded">Thêm ảnh</a> --}}
 
     <table class="table-auto w-full mt-4 border border-gray-300 shadow-md">
         <thead class="bg-gray-700 text-white">
             <tr>
                 <th class="border px-4 py-2">Tên</th>
+                <th class="border px-4 py-2">Hình ảnh</th>
                 <th class="border px-4 py-2">Giá</th>
                 <th class="border px-4 py-2">Kho</th>
                 <th class="border px-4 py-2">Hành động</th>
@@ -20,6 +22,15 @@
             @foreach($products as $product)
                 <tr class="odd:bg-gray-100">  {{-- Thêm lớp này để có sọc xám --}}
                     <td class="border px-4 py-2">{{ $product->name }}</td>
+                    <td class="border px-4 py-2 text-center">
+                        @if ($product->image_url)
+                            <div class="flex justify-center">
+                                <img src="{{ $product->image_url }}" alt="Ảnh sản phẩm" class="w-20 h-20 object-cover">
+                            </div>
+                        @else
+                            <span class="block text-center">Không có ảnh</span>
+                        @endif
+                    </td>
                     <td class="border px-4 py-2">{{ $product->price }}</td>
                     <td class="border px-4 py-2">{{ $product->stock }}</td>
                     <td class="border px-4 py-2 text-center">

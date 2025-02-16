@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'POS System') }}</title>
+    <title>{{ config('app.name', 'Store') }}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -21,7 +21,7 @@
         <!-- ✅ Navigation -->
         <nav class="bg-white shadow-md py-4">
             <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
-                <a href="/" class="text-2xl font-bold text-blue-600">POS System</a>
+                <a href="/" class="text-2xl font-bold text-blue-600">My Store</a>
                 <div class="space-x-6">
                     <a href="/products" class="text-gray-600 hover:text-blue-500 transition">Sản phẩm</a>
                     <a href="/orders" class="text-gray-600 hover:text-green-500 transition">Đơn hàng</a>

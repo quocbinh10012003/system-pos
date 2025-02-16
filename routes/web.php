@@ -6,8 +6,8 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Auth;
-
+// use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Config;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/test-cloudinary', function () {
+//     dd(config('cloudinary'));
+// });
 Route::get('/', function () {
     return view('index'); // sau khi đăng nhập thành công trả về trang index
 })->middleware(['auth'])->name('index');

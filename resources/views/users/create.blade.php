@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="text-xl font-semibold">Thêm khách hàng mới</h1>
+        <h1 class="text-xl font-semibold">Thêm nhân viên</h1>
 
         <form action="{{ route('users.store') }}" method="POST" class="mt-4">
             @csrf
@@ -29,7 +29,7 @@
 
             <div class="flex items-center space-x-4 mt-4">
                 <button type="submit" class="bg-green-500 text-white px-6 py-2 rounded-lg shadow hover:bg-green-600 transition">
-                    Tạo khách hàng
+                    Tạo nhân viên
                 </button>
                 <a href="{{ route('users.index') }}" class="bg-gray-500 text-white px-6 py-2 rounded-lg shadow hover:bg-gray-600 transition">
                     Hủy
