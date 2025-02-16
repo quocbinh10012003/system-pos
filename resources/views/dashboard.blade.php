@@ -10,6 +10,9 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     You're logged in!
+                    <h1>Chào mừng, {{ auth()->user()->name }}!</h1>
+                    <p>Email của bạn là: {{ auth()->user()->email }}</p>
+
                 </div>
             </div>
         </div>

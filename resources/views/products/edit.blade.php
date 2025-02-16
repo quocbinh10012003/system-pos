@@ -20,6 +20,10 @@
             <label class="block">Kho</label>
             <input type="number" name="stock" value="{{ $product->stock }}" class="border px-2 py-1 w-full">
         </div>
-        <button class="bg-green-500 text-white px-4 py-2">Cập nhật</button>
+        {{-- <button class="bg-green-500 text-white px-4 py-2">Cập nhật</button> --}}
+        <div class="flex gap-4">
+            <button class="bg-green-500 text-white px-4 py-2 rounded">Cập nhật</button>
+            <a href="{{ route('products.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Hủy</a>
+        </div>
     </form>
 @endsection
